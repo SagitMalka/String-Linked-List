@@ -101,10 +101,13 @@ char* StrList_firstData(const StrList* StrList){
 void StrList_print(const StrList* StrList) {
     if (StrList) {
         Node *current = StrList->_head;
+        printf("%s", current->word);
+        current = current->next;
         while (current) {
-            printf("%s ", current->word);
+            printf(" %s", current->word);
             current = current->next;
         }
+        printf("\n");
     }
 }
 void StrList_printAt(const StrList* Strlist,int index){
@@ -113,9 +116,9 @@ void StrList_printAt(const StrList* Strlist,int index){
         for (int i = 0; i < index; i++) {
             current = current->next;
         }
-        printf("String at index %d: %s\n", index, current->word);
+        printf("%s\n",current->word);
     } else {
-        printf("Invalid index.\n");
+        return;
     }
 }
 int StrList_printLen(const StrList* Strlist){
@@ -174,7 +177,6 @@ void StrList_removeAt(StrList* StrList, int index){
     if (StrList && index >= 0 && index < StrList->_size) {
         Node *current = StrList->_head;
         Node *prev = NULL;
-        int i = 0;
         if (index == 0) {
             StrList->_head = StrList->_head->next;
             current->next = NULL;
