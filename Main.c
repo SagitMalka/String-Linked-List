@@ -34,7 +34,7 @@ int main() {
                 break;
             case 3:
                 if (flagfree == 1) {
-                    printf("\n");
+                    //printf("\n");
                     break;
                 }
                 StrList_print(list);
