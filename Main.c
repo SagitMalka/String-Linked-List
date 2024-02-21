@@ -4,6 +4,7 @@
 
 int main() {
     int flag = 1;
+    int flagfree = 0;
     int fun = 0;
     int num = 0;
     int index = 0;
@@ -32,6 +33,10 @@ int main() {
                 StrList_insertAt(list, word, index);
                 break;
             case 3:
+                if (flagfree == 1) {
+                    printf("\n");
+                    break;
+                }
                 StrList_print(list);
                 break;
             case 4:
@@ -67,6 +72,7 @@ int main() {
                 StrList_reverse(list);
                 break;
             case 11:
+                flagfree = 1;
                 StrList_free(list); // Free memory using StrList_free
                 break;
             case 12:
