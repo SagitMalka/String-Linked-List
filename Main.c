@@ -90,6 +90,5 @@ int main() {
                 break;
         }
     }
-    StrList_free(list);
     return 0;
 }
