@@ -90,6 +90,5 @@ int main() {
                 break;
         }
     }
-    free(list);
     return 0;
 }
