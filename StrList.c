@@ -55,11 +55,7 @@ size_t StrList_size(const StrList* StrList){
 void StrList_insertLast(StrList* StrList, const char* data){
     if (StrList) {
         Node *newNode = Node_alloc(data, NULL);
-        // Node *newNode = (Node*)malloc(sizeof(Node));
         if (newNode) {
-            // newNode->word = strdup(data); // Duplicate the string to store in the list
-            // newNode->next = NULL;
-
             if (!StrList->_head) {
                 StrList->_head = newNode;
             } else {
@@ -72,6 +68,7 @@ void StrList_insertLast(StrList* StrList, const char* data){
 
             (StrList->_size)++;
         }
+        free(newNode);
     }
 }
 
@@ -89,7 +86,6 @@ void StrList_insertAt(StrList* StrList, const char* data, int index){
             }
             new_node->next = current->next;
             current->next = new_node;
-            // Node_free(current);
         }
     }  StrList->_size++;
 }
@@ -152,7 +148,6 @@ void StrList_remove(StrList* StrList, const char* data){
         Node *prev = NULL;
         while (current != NULL){
             if(strcmp(current->word, data_to_find) == 0){
-                // check the head data
                 if(prev == NULL){
                     StrList->_head = current->next;
                     free((char *)current->word);
@@ -242,11 +237,8 @@ void StrList_reverse( StrList* StrList){
     Node* next = NULL;
 
     while(curr != NULL){
-        // store next node
         next = curr->next;
-        // reverse curr's pointer
         curr->next = prev;
-        // reverse other pointers
         prev = curr;
         curr = next;
     }
@@ -255,7 +247,6 @@ void StrList_reverse( StrList* StrList){
 
 void StrList_sort(StrList* StrList) {
     if (StrList == NULL || StrList->_head == NULL || StrList->_head->next == NULL) {
-        // If the list is NULL, empty, or has only one node, no sorting needed
         return;
     }
 
@@ -264,7 +255,6 @@ void StrList_sort(StrList* StrList) {
         Node* nextNode = current->next;
         while (nextNode != NULL) {
             if (strcmp(current->word, nextNode->word) > 0) {
-                // Swap the words between current and nextNode
                 char* temp = (char*)current->word;
                 current->word = nextNode->word;
                 nextNode->word = temp;
@@ -274,10 +264,8 @@ void StrList_sort(StrList* StrList) {
         current = current->next;
     }
 }
-// returns 1 for sorted,   0 otherwise
 int StrList_isSorted(StrList* StrList){
     if (StrList == NULL || StrList->_head == NULL || StrList->_head->next == NULL) {
-        // If the list is NULL, empty, or has only one node, no sorting needed
         return 1;
     }
     else{
