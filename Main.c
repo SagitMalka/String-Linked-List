@@ -10,7 +10,7 @@ int main() {
     int index = 0;
     int res = 0;
     char* word = NULL;
-    StrList* list = StrList_alloc(); // Use StrList_create() for allocation
+    StrList* list = StrList_alloc();
     while (flag) {
         scanf(" %d", &fun);
 
@@ -21,16 +21,18 @@ int main() {
             case 1:
                 scanf(" %d", &num);
                 for (int i = 0; i < num; i++) {
-                    word = (char*)malloc(100 * sizeof(char)); // Allocate memory for word
+                    word = (char*)malloc(100 * sizeof(char));
                     scanf(" %s", word);
                     StrList_insertLast(list, word);
+                    free(word);
                 }
                 break;
             case 2:
                 scanf(" %d", &index);
-                word = (char*)malloc(100 * sizeof(char)); // Allocate memory for word
+                word = (char*)malloc(100 * sizeof(char));
                 scanf("%s", word);
                 StrList_insertAt(list, word, index);
+                free(word);
                 break;
             case 3:
                 if (flagfree == 1) {
@@ -52,17 +54,17 @@ int main() {
                 printf("%d\n", res);
                 break;
             case 7:
-                word = (char*)malloc(100 * sizeof(char)); // Allocate memory for word
+                word = (char*)malloc(100 * sizeof(char));
                 scanf(" %s", word);
                 res = StrList_count(list, word);
                 printf("%d\n", res);
-                free(word); // Free allocated memory for word
+                free(word);
                 break;
             case 8:
-                word = (char*)malloc(100 * sizeof(char)); // Allocate memory for word
+                word = (char*)malloc(100 * sizeof(char));
                 scanf(" %s", word);
                 StrList_remove(list, word);
-                free(word); // Free allocated memory for word
+                free(word);
                 break;
             case 9:
                 scanf(" %d", &index);
@@ -73,7 +75,7 @@ int main() {
                 break;
             case 11:
                 flagfree = 1;
-                StrList_free(list); // Free memory using StrList_free
+                StrList_free(list);
                 break;
             case 12:
                 StrList_sort(list);
@@ -90,6 +92,6 @@ int main() {
                 break;
         }
     }
-    
+    StrList_free(list);
     return 0;
 }
