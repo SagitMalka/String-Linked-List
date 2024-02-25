@@ -16,6 +16,7 @@ int main() {
 
         switch (fun) {
             case 0:
+                free(list);
                 flag = 0;
                 break;
             case 1:
@@ -90,6 +91,6 @@ int main() {
                 break;
         }
     }
-    free(list);
+    // free(list);
     return 0;
 }
