@@ -90,5 +90,8 @@ int main() {
                 break;
         }
     }
+    if(flagfree == 0){
+        free(list);
+    }
     return 0;
 }
